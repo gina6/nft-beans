@@ -2,13 +2,13 @@ module.exports = {
   networks: {
     development: {
       // Mantis
-      host: "mantis-rpc.switch.ch",
-      port: "*",
-      network_id: 96970,
+      // host: "mantis-rpc.switch.ch",
+      // port: "*",
+      // network_id: 96970,
       // Ganache
-      // host: "127.0.0.1",
-      // port: 7545,
-      // network_id: 5777,
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: 5777,
 
       dashboard: {
         port: 24012,

@@ -2,6 +2,9 @@ import { defineNuxtConfig } from 'nuxt3'
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  publicRuntimeConfig: {
+    BEANS_ADDRESS: process.env.BEANS_ADDRESS
+  },
   build: {
     transpile: ["@ethersproject", "ethers"],
   },

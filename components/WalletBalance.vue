@@ -1,12 +1,15 @@
 <script setup>
+  import { ethers } from "ethers";
+
   const balance = ref(null)
 
-  function getBalance() {
+  async function getBalance() {
     console.log("Clicked")
-    // const { account } = await useAsyncData( 'account', () => window.ethereum.request({ method: 'eth_requestAccounts' }))
-    // const provider = new ethers.providers.Web3Provider(window.ethereum)
-    // const balance = await provider.getBalance(account)
-    // balance = ethers.utils.formatEther(balance)
+
+    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const accountBalance = await provider.getBalance(account)
+    balance.value = ethers.utils.formatEther(accountBalance)
   }
 </script>
 <template>

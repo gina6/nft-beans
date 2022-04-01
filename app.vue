@@ -8,8 +8,8 @@
 </script>
 <template>
   <div>
-    <Install v-if="metamask" />
-    <Home v-else />
+    <Install v-if="!metamask" />
+    <Home />
     <WalletBalance />
   </div>
 </template>

@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $color-white;
+}
+
+h1 {
+  @include title;
+}
+
+h2 {
+  @include subtitle;
+}
+
+p {
+  @include text;
+}
+
+a {
+  text-decoration: none;
+}

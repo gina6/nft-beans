@@ -5,6 +5,9 @@
       metamask.value = true
     }
   })
+  definePageMeta({
+    layout: "custom",
+  });
 </script>
 <template>
   <div>
@@ -13,3 +16,8 @@
     <WalletBalance />
   </div>
 </template>
+<style lang="scss" scoped>
+  div {
+    color: $color-white;
+  }
+</style>

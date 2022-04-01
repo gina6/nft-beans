@@ -7,7 +7,9 @@
   },
   "devDependencies": {
     "ganache-cli": "^6.12.2",
-    "nuxt3": "latest"
+    "nuxt3": "latest",
+    "sass": "^1.49.10",
+    "sass-loader": "^12.6.0"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.5.0",

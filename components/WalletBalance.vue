@@ -15,6 +15,6 @@
 <template>
   <div> 
     <h5> Balance: {{ balance }} </h5>
-    <Button @click="getBalance"> Show My Balance </Button>
+    <!-- <Button @click="getBalance"> Show My Balance </Button> -->
   </div>
 </template>

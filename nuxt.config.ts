@@ -6,6 +6,13 @@ export default defineNuxtConfig({
     transpile: ["@ethersproject", "ethers"],
   },
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "@/assets/scss/main.scss";',
+        },
+      },
+    },
     optimizeDeps: {
       include: [
         "bn.js",

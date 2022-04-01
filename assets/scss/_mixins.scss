@@ -1,0 +1,52 @@
+// Impact 300, 400, 700 regular
+@font-face {
+  font-family: 'impact';
+  font-display: swap;
+  src: url('~assets/fonts/impact.ttf') format('truetype');
+}
+
+// Helvetica 400, 500, 700 regular
+@font-face {
+  font-family: 'helvetica';
+  font-display: swap;
+  src: url('~assets/fonts/Helvetica.ttf') format('truetype');
+}
+
+// Helvetica 400, 500, 700 bold
+@font-face {
+  font-family: 'helvetica bold';
+  font-display: swap;
+  src: url('~assets/fonts/Helvetica-Bold.ttf') format('truetype');
+}
+
+@mixin impact {
+  font-family: impact, sans-serif;
+}
+
+@mixin helvetica {
+  font-family: helvetica, sans-serif;
+}
+
+@mixin helvetica-bold {
+  font-family: helvetica bold, sans-serif;
+}
+
+@mixin title {
+  @include impact;
+  font-size: 80px;
+  color: $color-green;
+  text-transform: uppercase;
+}
+ 
+@mixin subtitle {
+  @include helvetica-bold;
+  font-size: 30px;
+  color: $color-white;
+  text-transform: uppercase;
+}
+
+@mixin text {
+  @include helvetica;
+  font-size: 25px;
+  color: $color-white;
+}

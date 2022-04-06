@@ -29,7 +29,9 @@
     beans.value = nfts;
   }
 
-  loadNFTs();
+  if (process.client) {
+    loadNFTs();
+  }
 
 definePageMeta({
   layout: "custom",
@@ -49,7 +51,9 @@ definePageMeta({
       </Dropdown>
     </div>
     <div class="container-beans">
-      <BeanMint @minted="loadNFTs" />
+      <ClientOnly>
+        <BeanMint @minted="loadNFTs" />
+      </ClientOnly>
       <BeanPreview
         v-for="bean in beans"
         :key="bean.id"

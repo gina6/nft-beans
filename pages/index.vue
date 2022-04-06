@@ -34,7 +34,7 @@ definePageMeta({
           </ul>
         </span>
         <img
-          src="../public/home-vision.png"
+          src="/home-vision.png"
           alt="sketch of some monk dude writing something"
         />
       </div>
@@ -91,7 +91,7 @@ div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(../public/home-header.png) no-repeat;
+    background: url(/home-header.png) no-repeat;
   }
 }
 </style>

@@ -1,20 +1,35 @@
 <script setup>
-const categories = [
-  "Background",
-  "Hat",
-  "Eyes",
-  "Nose",
-  "Mouth",
-  "Skin",
-  "Hands"
-]
+  import { getBeans } from "@/utils/contracts";
 
-const beans = [
-  {id: 1, image: 'https://picsum.photos/250/250'},
-  {id: 2, image: 'https://picsum.photos/250/250'},
-  {id: 3, image: 'https://picsum.photos/250/250'},
-  {id: 4, image: 'https://picsum.photos/250/250'},
-]
+  const categories = [
+    "Background",
+    "Hat",
+    "Eyes",
+    "Nose",
+    "Mouth",
+    "Skin",
+    "Hands"
+  ]
+
+  const beans = ref([]);
+  const config = useRuntimeConfig();
+
+  async function loadNFTs() {
+    const beansContract = getBeans(config);
+
+    const count = parseInt(await beansContract.count());
+    const nfts = [];
+    for (let i = 0; i < count; i++) {
+      nfts.push({
+        id: i,
+        image: "https://picsum.photos/250/250",
+        // TODO: image: await beansContract.tokenURI(i),
+      })
+    }
+    beans.value = nfts;
+  }
+
+  loadNFTs();
 
   definePageMeta({
     layout: "custom",
@@ -33,13 +48,13 @@ const beans = [
       </Dropdown>
     </div>
     <div class="container-beans">
+      <BeanMint @minted="loadNFTs" />
       <BeanPreview
         v-for="bean in beans" :key="bean.id"
         :text = "`Supreme Bean #${bean.id}`"
         :image = "bean.image"
       >
       </BeanPreview>
-      <BeanMint />
     </div>
   </div>
 </template>
@@ -66,11 +81,21 @@ const beans = [
   }
   .container-beans {
     width: 70%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
+
+    @include smallScreen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    > * {
+      margin: 0 auto;
+    }
   }
 }
 </style>

@@ -1,9 +1,28 @@
 <script setup>
-  
+  import { getBeans, getSigner } from "@/utils/contracts";
+  import { ethers } from "ethers";
+
+  const emit = defineEmits(["minted"]);
+
+  const config = useRuntimeConfig();
+
+  async function mint() {
+    const beans = getBeans(config);
+    const signer = getSigner();
+    const signerAddress = await signer.getAddress();
+
+    // TODO: image uri
+    const uri = "asdf" + Math.random();
+    await beans.payToMint(signerAddress, uri, {
+      value: ethers.utils.parseUnits("0.05", "ether")
+    });
+
+    emit("minted");
+  }
 </script>
 
 <template>
-  <div class="bean-container">
+  <div class="bean-container" @click="mint">
     Mint Bean
   </div>
 </template>

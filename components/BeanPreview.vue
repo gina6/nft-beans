@@ -14,6 +14,7 @@
 <style lang="scss" scoped>
   .bean-container {
     height: fit-content;
+    width: min-content;
 
     img {
       width: 250px;

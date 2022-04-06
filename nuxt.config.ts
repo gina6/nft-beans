@@ -3,7 +3,8 @@ import { defineNuxtConfig } from 'nuxt3'
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   publicRuntimeConfig: {
-    BEANS_ADDRESS: process.env.BEANS_ADDRESS
+    BEANS_ADDRESS: process.env.BEANS_ADDRESS,
+    PINATA_CONTENT_ID: process.env.PINATA_CONTENT_ID
   },
   build: {
     transpile: ["@ethersproject", "ethers"],

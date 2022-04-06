@@ -39,6 +39,7 @@ const beans = [
         :image = "bean.image"
       >
       </BeanPreview>
+      <BeanMint />
     </div>
   </div>
 </template>

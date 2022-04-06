@@ -14,10 +14,12 @@
 <style lang="scss" scoped>
   .bean-container {
     height: fit-content;
-    .bean-image {
+
+    img {
       width: 250px;
       height: 250px;
       object-fit: contain;
+      border-radius: 10px;
     }
     .bean-text {
       @include helvetica;

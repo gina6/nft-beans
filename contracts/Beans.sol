@@ -6,15 +6,27 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
+
+interface IFoods {
+    function eat(uint256 foodId) external;
+    function balanceOf(address account, uint256 foodId) external returns (uint256);
+}
 
 contract Beans is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+    IFoods private foods;
 
     mapping(string => uint8) existingURIs;
+    mapping(uint256 => uint256) eatenFood;
 
-    constructor() ERC721("Beans", "BNS") {}
+    constructor(
+        address foodsAddress
+    ) ERC721("Beans", "BNS") {
+        foods = IFoods(foodsAddress);
+    }
 
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://";
@@ -42,7 +54,18 @@ contract Beans is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         override(ERC721, ERC721URIStorage)
         returns (string memory)
     {
-        return super.tokenURI(tokenId);
+        uint256 food = eatenFood[tokenId];
+        return string(abi.encodePacked(super.tokenURI(tokenId), "/", Strings.toString(food)));
+    }
+
+    function feed(uint256 tokenId, uint256 foodId)
+        public
+    {
+        require(ownerOf(tokenId) == tx.origin, "Only the owner can feed the bean");
+        require(foods.balanceOf(tx.origin, foodId) >= 1, "You have no food to feed the bean");
+
+        foods.eat(foodId);
+        eatenFood[tokenId] = foodId;
     }
 
     function isContentOwned(string memory uri) public view returns (bool) {

@@ -4,7 +4,7 @@ useMeta({
     style: [`height: 100%;`],
   },
   bodyAttrs: {
-    style: [`background: #1B1B1B no-repeat top; min-height: 100%;`],
+    style: [`background: #1B1B1B no-repeat top; min-height: 100%; margin: 0px`],
   },
 });
 </script>

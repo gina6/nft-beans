@@ -2,21 +2,21 @@
 @font-face {
   font-family: 'impact';
   font-display: swap;
-  src: local('impact'), url('~assets/fonts/impact.ttf') format('truetype');
+  src: local('impact'), url('@/assets/fonts/impact.ttf') format('truetype');
 }
 
 // Helvetica 400, 500, 700 regular
 @font-face {
   font-family: 'helvetica';
   font-display: swap;
-  src: local('Helvetica'), url('~assets/fonts/Helvetica.ttf') format('truetype');
+  src: local('Helvetica'), url('@/assets/fonts/Helvetica.ttf') format('truetype');
 }
 
 // Helvetica 400, 500, 700 bold
 @font-face {
   font-family: 'helvetica bold';
   font-display: swap;
-  src: local('Helvetica Bold'), url('~assets/fonts/Helvetica-Bold.ttf') format('truetype');
+  src: local('Helvetica Bold'), url('@/assets/fonts/Helvetica-Bold.ttf') format('truetype');
 }
 
 @mixin impact {

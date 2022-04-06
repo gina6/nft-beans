@@ -12,12 +12,12 @@
         <div class="social">
           <div class="icon youtube"></div>
           <a href="hhttps://www.youtube.com/channel/UC5rdL_SbcwbCJSrIvhnZMvA"
-            >Suprem Bean Cult</a
+            >Supreme Bean Cult</a
           >
         </div>
         <div class="social">
           <div class="icon discord"></div>
-          <a href="https://discord.gg/4fAHgeUt">Suprem Bean Cult</a>
+          <a href="https://discord.gg/4fAHgeUt">Supreme Bean Cult</a>
         </div>
       </div>
     </div>

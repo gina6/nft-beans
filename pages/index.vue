@@ -1,5 +1,14 @@
 <script setup>
 const metamask = ref(false);
+
+const carbeanals = ref([
+  { name: "Beana", image: "/carbeanals/beana.png" },
+  { name: "Beaninic", image: "/carbeanals/beaninic.png" },
+  { name: "Beanalie", image: "/carbeanals/beanalie.png" },
+  { name: "Vabeana", image: "/carbeanals/vabeana.png" },
+  { name: "Beanlas", image: "/carbeanals/beanlas.png" },
+]);
+
 onBeforeMount(() => {
   if (window.ethereum) {
     metamask.value = true;
@@ -42,7 +51,14 @@ definePageMeta({
     </div>
     <div class="wrapper">
       <h1>The Carbeanals</h1>
-      <div class="divider"></div>
+      <div class="carbeanals-container">
+        <BeanPreview
+          v-for="carbeanal in carbeanals"
+          :key="carbeanal"
+          :text="carbeanal.name"
+          :image="carbeanal.image"
+        />
+      </div>
     </div>
     <!-- <Install v-if="!metamask" />
     <Home />
@@ -83,6 +99,14 @@ div {
       height: 1px;
       margin-top: 5%;
       background-color: $color-white;
+    }
+    .carbeanals-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 60%;
+      gap: 40px;
+      margin: 0 auto;
     }
   }
 

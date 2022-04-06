@@ -6,19 +6,20 @@ const categories = [
   "Nose",
   "Mouth",
   "Skin",
-  "Hands"
-]
+  "Hands",
+];
 
 const beans = [
-  {id: 1, image: 'https://picsum.photos/250/250'},
-  {id: 2, image: 'https://picsum.photos/250/250'},
-  {id: 3, image: 'https://picsum.photos/250/250'},
-  {id: 4, image: 'https://picsum.photos/250/250'},
-]
+  { id: 1, image: "https://picsum.photos/250/250" },
+  { id: 2, image: "https://picsum.photos/250/250" },
+  { id: 3, image: "https://picsum.photos/250/250" },
+  { id: 4, image: "https://picsum.photos/250/250" },
+  { id: 5, image: "https://picsum.photos/250/250" },
+];
 
-  definePageMeta({
-    layout: "custom",
-  });
+definePageMeta({
+  layout: "custom",
+});
 </script>
 <template>
   <div class="wrapper">
@@ -26,20 +27,22 @@ const beans = [
       <h1>Gallery</h1>
       <div class="divider"></div>
       <Dropdown
-        v-for="category in categories" :key="category"
-        :category = "category"
+        v-for="category in categories"
+        :key="category"
+        :category="category"
       >
-      <div class="divider"></div>
+        <div class="divider"></div>
       </Dropdown>
     </div>
     <div class="container-beans">
+      <BeanMint />
       <BeanPreview
-        v-for="bean in beans" :key="bean.id"
-        :text = "`Supreme Bean #${bean.id}`"
-        :image = "bean.image"
+        v-for="bean in beans"
+        :key="bean.id"
+        :text="`Supreme Bean #${bean.id}`"
+        :image="bean.image"
       >
       </BeanPreview>
-      <BeanMint />
     </div>
   </div>
 </template>

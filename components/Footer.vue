@@ -37,7 +37,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 36px 0;
+    padding: 36px 0;
     .social {
       display: flex;
       flex-direction: column;

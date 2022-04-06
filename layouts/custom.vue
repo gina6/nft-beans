@@ -1,16 +1,12 @@
 <script setup lang="ts">
-  useMeta({
-    htmlAttrs: {
-      style: [
-        `height: 100%;`,
-      ]
-    },
-    bodyAttrs: {
-      style: [
-        `background: #000000 no-repeat top; min-height: 100%;`
-      ]
-    }
-  })
+useMeta({
+  htmlAttrs: {
+    style: [`height: 100%;`],
+  },
+  bodyAttrs: {
+    style: [`background: #1B1B1B no-repeat top; min-height: 100%; margin: 0px`],
+  },
+});
 </script>
 
 <template>
@@ -24,9 +20,9 @@
 </template>
 
 <style lang="scss" scoped>
-  .container {
-    top: 0;
-    margin: 0 auto;
-    width: 1440px;
-  }
+.container {
+  top: 0;
+  margin: 0 auto;
+  width: 1440px;
+}
 </style>

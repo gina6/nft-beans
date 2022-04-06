@@ -31,9 +31,9 @@
 
   loadNFTs();
 
-  definePageMeta({
-    layout: "custom",
-  });
+definePageMeta({
+  layout: "custom",
+});
 </script>
 <template>
   <div class="wrapper">
@@ -41,18 +41,20 @@
       <h1>Gallery</h1>
       <div class="divider"></div>
       <Dropdown
-        v-for="category in categories" :key="category"
-        :category = "category"
+        v-for="category in categories"
+        :key="category"
+        :category="category"
       >
-      <div class="divider"></div>
+        <div class="divider"></div>
       </Dropdown>
     </div>
     <div class="container-beans">
       <BeanMint @minted="loadNFTs" />
       <BeanPreview
-        v-for="bean in beans" :key="bean.id"
-        :text = "`Supreme Bean #${bean.id}`"
-        :image = "bean.image"
+        v-for="bean in beans"
+        :key="bean.id"
+        :text="`Supreme Bean #${bean.id}`"
+        :image="bean.image"
       >
       </BeanPreview>
     </div>

@@ -9,7 +9,7 @@
 @font-face {
   font-family: 'helvetica';
   font-display: swap;
-  src: local('Helvetica'), url('@/assets/fonts/Helvetica.ttf') format('truetype');
+  src: local('Helvetica Light'), url('@/assets/fonts/Helvetica-Light.ttf') format('truetype');
 }
 
 // Helvetica 400, 500, 700 bold
@@ -49,6 +49,17 @@
   @include helvetica;
   font-size: 25px;
   color: $color-white;
+}
+
+@mixin list {
+  @include helvetica;
+  font-size: 25px;
+  color: $color-white;
+}
+
+@mixin link {
+  color: $color-green;
+  text-decoration: none;
 }
 
 @mixin smallScreen() {

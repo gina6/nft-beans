@@ -18,5 +18,9 @@ p {
 }
 
 a {
-  text-decoration: none;
+  @include link;
+}
+
+ul {
+  @include list;
 }

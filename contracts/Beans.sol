@@ -19,7 +19,6 @@ contract Beans is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     Counters.Counter private _tokenIdCounter;
     IFoods private foods;
 
-    mapping(string => uint8) existingURIs;
     mapping(uint256 => uint256) eatenFood;
 
     constructor(
@@ -55,7 +54,7 @@ contract Beans is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         returns (string memory)
     {
         uint256 food = eatenFood[tokenId];
-        return string(abi.encodePacked(super.tokenURI(tokenId), "/", Strings.toString(food)));
+        return string(abi.encodePacked(super.tokenURI(tokenId), "_", Strings.toString(food), ".png"));
     }
 
     function feed(uint256 tokenId, uint256 foodId)
@@ -63,26 +62,23 @@ contract Beans is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     {
         require(ownerOf(tokenId) == tx.origin, "Only the owner can feed the bean");
         require(foods.balanceOf(tx.origin, foodId) >= 1, "You have no food to feed the bean");
+        require(eatenFood[tokenId] == 0, "Bean has already eaten");
 
         foods.eat(foodId);
         eatenFood[tokenId] = foodId;
     }
 
-    function isContentOwned(string memory uri) public view returns (bool) {
-        return existingURIs[uri] == 1;
-    }
-
-    function payToMint(address recipient, string memory metadataURI)
+    function payToMint(address recipient, string memory contentId)
         public
         payable
         returns (uint256)
     {
-        require(existingURIs[metadataURI] != 1, "NFT already minted!");
         require(msg.value >= 0.05 ether, "Need to pay up!");
 
         uint256 newItemId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        existingURIs[metadataURI] = 1;
+
+        string memory metadataURI = string(abi.encodePacked(contentId, "/", Strings.toString(newItemId)));
 
         _mint(recipient, newItemId);
         _setTokenURI(newItemId, metadataURI);

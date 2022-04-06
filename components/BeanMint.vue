@@ -11,9 +11,7 @@
     const signer = getSigner();
     const signerAddress = await signer.getAddress();
 
-    // TODO: image uri
-    const uri = "asdf" + Math.random();
-    await beans.payToMint(signerAddress, uri, {
+    await beans.payToMint(signerAddress, config.PINATA_CONTENT_ID, {
       value: ethers.utils.parseUnits("0.05", "ether")
     });
 

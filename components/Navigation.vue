@@ -3,7 +3,7 @@
     <div class="container">
       <NuxtLink :to="'/'">
         <div class="logo">
-          <img src="/logo.png" alt="Supreme Bean Cult Logo">
+          <img src="/header-logo.svg" alt="Supreme Bean Cult Logo" />
         </div>
       </NuxtLink>
       <div class="nav">
@@ -25,8 +25,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 36px 0;
-    .logo{
+    margin: 2.5vh 0;
+    padding: 0 2.5vw;
+    .logo {
       width: fit-content;
       display: flex;
       flex-direction: column;
@@ -34,19 +35,18 @@
       align-items: center;
       text-transform: uppercase;
 
-      img{
-        margin-left: 5vw;
+      img {
+        height: 10vh;
       }
     }
     .nav {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 80px;
-      padding-left: 8px;
-      padding-right: 8px;
+      gap: 5vw;
+
       @include smallScreen {
-        gap: 40px;
+        gap: 2.5vw;
       }
     }
   }

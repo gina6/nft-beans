@@ -17,7 +17,7 @@ definePageMeta({
       <h1>Welcome Brother. Welcome Sister.</h1>
       <h2>How have you bean?</h2>
     </div>
-    <div class="info-wrapper">
+    <div class="info-wrapper content">
       <h1>The Vision</h1>
       <div class="img-paragraph">
         <span>
@@ -42,7 +42,7 @@ definePageMeta({
       </div>
     </div>
     <div class="divider"></div>
-    <div class="info-wrapper">
+    <div class="info-wrapper content">
       <h1>The Carbeanals</h1>
       <div class="carbeanals-container">
         <BeanPreview
@@ -58,8 +58,6 @@ definePageMeta({
 <style lang="scss" scoped>
 div {
   h1 {
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
     padding-bottom: 2%;
   }
 
@@ -77,12 +75,17 @@ div {
       li {
         padding: 0 0 5% 0;
         color: $color-green;
+
+        a {
+          font-size: 1em;
+        }
       }
     }
   }
 
   .info-wrapper {
     min-height: 50vh;
+
     .carbeanals-container {
       display: flex;
       justify-content: space-around;
@@ -100,6 +103,11 @@ div {
     align-items: center;
     background: url(/home-header.png) no-repeat;
     background-position: center;
+  }
+
+  .content {
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 }
 </style>

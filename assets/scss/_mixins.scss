@@ -33,31 +33,41 @@
 
 @mixin title {
   @include impact;
-  font-size: 80px;
+  font-size: 4em;
   color: $color-green;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
+
 }
 
 @mixin subtitle {
   @include helvetica-bold;
-  font-size: 30px;
+  font-size: 2em;
   color: $color-white;
   text-transform: uppercase;
 }
 
+@mixin highlight {
+  @include helvetica-bold;
+  font-size: 1.5em;
+
+}
+
 @mixin text {
   @include helvetica;
-  font-size: 25px;
+  font-size: 1.25em;
   color: $color-white;
 }
 
 @mixin list {
   @include helvetica;
-  font-size: 25px;
+  font-size: 1.25em;
   color: $color-white;
 }
 
 @mixin link {
+  @include helvetica;
+  font-size: 1.25em;
   color: $color-green;
   text-decoration: none;
 }

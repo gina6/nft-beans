@@ -61,25 +61,28 @@ const beanImage = computed(
 </script>
 <template>
   <div class="wrapper">
-    <img src="/church.png" alt="people walking in the church" />
-    <div class="info-wrapper info-text">
+    <div class="info-wrapper title">
+      <h1>Church</h1>
+    </div>
+    <div class="info-wrapper info-text content">
       <div class="text">
         <span>Seek the beans.</span>
         <span>Feed the beans.</span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          The beans are like us in many aspects - which means they also get
+          hungry and need to eat. To satisfy their needs you can feed them
+          vegetables, meat, sweets or the special premium food provided by our
+          members.
+        </p>
+        <p>
+          Our Beanlas is enjoying the veggies from the vegetable food pack.
+          Maybe your bean prefers the special pack?
         </p>
       </div>
       <img class="image" src="/eatingbean.gif" alt="bean eating something" />
     </div>
     <div class="divider"></div>
-    <div class="info-wrapper feed-container">
+    <div class="info-wrapper feed-container content">
       <div class="summands">
         <div>
           <BeanPlaceholder v-if="!beanImage"> bean NFT </BeanPlaceholder>
@@ -120,6 +123,22 @@ const beanImage = computed(
   </div>
 </template>
 <style lang="scss" scoped>
+.info-wrapper {
+  min-height: 50vh;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url(/church.png) no-repeat;
+  background-position: top;
+  height: 50%;
+}
+.content {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 img {
   width: 100%;
   max-width: 1240px;
@@ -140,14 +159,13 @@ img {
     span {
       @include title;
       text-transform: uppercase;
-      font-size: 80px;
     }
     p {
       margin-top: 38px;
     }
   }
   .image {
-    width: 45%;
+    width: 30%;
     margin: 0 auto;
     object-fit: contain;
     margin: 0;

@@ -13,6 +13,10 @@ h2 {
   @include subtitle;
 }
 
+h3 {
+  @include highlight;
+}
+
 p {
   @include text;
 }

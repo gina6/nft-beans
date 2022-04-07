@@ -3,7 +3,7 @@
     <div class="container">
       <NuxtLink :to="'/'">
         <div class="logo">
-          <img src="/logo.svg" alt="Supreme Bean Cult Logo">
+          <img src="/logo.png" alt="Supreme Bean Cult Logo">
         </div>
       </NuxtLink>
       <div class="nav">
@@ -35,7 +35,7 @@
       text-transform: uppercase;
 
       img{
-        height: 10%
+        margin-left: 5vw;
       }
     }
     .nav {

@@ -168,6 +168,10 @@ img {
           color: $color-black;
           padding: 2% 10%;
           margin-right: 2%;
+
+          option {
+            color: $color-black;
+          }
         }
       }
     }

@@ -4,6 +4,7 @@ import { defineNuxtConfig } from 'nuxt3'
 export default defineNuxtConfig({
   publicRuntimeConfig: {
     BEANS_ADDRESS: process.env.BEANS_ADDRESS,
+    FOODS_ADDRESS: process.env.FOODS_ADDRESS,
     PINATA_CONTENT_ID: process.env.PINATA_CONTENT_ID
   },
   build: {

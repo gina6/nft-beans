@@ -9,7 +9,10 @@
     {id: 4, value: "Special Food"}
   ]);
 
-  const foodId = ref(1)
+  const foodId = ref(1);
+
+  const beans = ref([]);
+  const beanId = ref(-1);
 
   definePageMeta({
     layout: "custom",
@@ -19,12 +22,36 @@
     const foods = useFoodsContract().value;
     const signer = useSigner();
     const signerAddress = await signer.getAddress();
-    const transfer = await foods.buy(signerAddress, foodId, {
+    const transfer = await foods.buy(signerAddress, foodId.value, {
       value: ethers.utils.parseUnits(foodId.value == 4 ? "0.02" : "0.01", "ether")
     });
     await transfer.wait();
   }
 
+  async function feedBean() {
+    const beansContract = useBeansContract().value;
+    const transfer = await beansContract.feed(beanId.value, foodId.value);
+    await transfer.wait();
+    await loadMyBeans();
+  }
+
+  async function loadMyBeans() {
+    const signer = useSigner();
+    const signerAddress = await signer.getAddress();
+
+    const allBeans = await loadBeans();
+    const myBeans = [];
+    for (const bean of allBeans) {
+      if (bean.owner === signerAddress) {
+        myBeans.push(bean);
+      }
+    }
+    beans.value = myBeans;
+  }
+
+  onBeforeMount(loadMyBeans);
+
+  const beanImage = computed(() => beans.value.find(b => b.id === beanId.value)?.image);
 
 </script>
 <template>
@@ -41,14 +68,22 @@
   <div class="divider"></div>
   <div class="info-wrapper feed-container">
     <div class="summands">
-      <BeanPlaceholder>
-        bean NFT
-      </BeanPlaceholder>
+      <div>
+        <BeanPlaceholder v-if="!beanImage">
+          bean NFT
+        </BeanPlaceholder>
+        <BeanPreview v-else :image="beanImage" />
+        <div class="feed-select">
+          <select v-model="beanId">
+            <option v-for="bean in beans" :value="bean.id">Supreme Bean #{{ bean.id }}</option>
+          </select>
+        </div>
+      </div>
       <div class="arrows">
 
       <div class="arrow"></div>
       <div class="feed-button">
-        <Button class="button" :active="true">Feed</Button>
+        <Button class="button" :active="true" @click="feedBean">Feed</Button>
         <div class="arrow-down"></div>
       </div>
       <div class="arrow"></div>
@@ -58,7 +93,7 @@
       <BeanPlaceholder>
         food
       </BeanPlaceholder>
-      <div class="food-select">
+      <div class="feed-select">
 
       <select name="foods" id="foods" v-model="foodId">
         <option v-for="food in foods" :key="food.value" :value="food.id">{{food.value}}</option>
@@ -153,20 +188,18 @@ img {
         mask-size: contain;
       }
     }
-    .food{
-      .food-select {
-        display: flex;
-        margin: 5% auto;
+    
+    .feed-select {
+      display: flex;
+      margin: 5% auto;
 
+      select {
+        color: $color-black;
+        padding: 2% 10%;
+        margin-right: 2%;
 
-        select {
+        option {
           color: $color-black;
-          padding: 2% 10%;
-          margin-right: 2%;
-
-          option {
-            color: $color-black;
-          }
         }
       }
     }

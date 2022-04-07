@@ -2,12 +2,14 @@
 
   import { ethers } from "ethers";
 
-  const foodId = ref([
+  const foods = ref([
     {id: 1, value: "Vegetables"},
     {id: 2, value: "Sweets"},
     {id: 3, value: "Meat"},
     {id: 4, value: "Special Food"}
   ]);
+
+  const foodId = ref(1)
 
   definePageMeta({
     layout: "custom",
@@ -17,16 +19,9 @@
     const foods = useFoodsContract().value;
     const signer = useSigner();
     const signerAddress = await signer.getAddress();
-
-    if (foodId == 4){
-      const transfer = await foods.buy(signerAddress, foodId, {
-      value: ethers.utils.parseUnits("0.02", "ether")
+    const transfer = await foods.buy(signerAddress, foodId, {
+      value: ethers.utils.parseUnits(foodId.value == 4 ? "0.02" : "0.01", "ether")
     });
-    } else {
-      const transfer = await foods.buy(signerAddress, foodId, {
-        value: ethers.utils.parseUnits("0.01", "ether")
-      });
-    }
     await transfer.wait();
   }
 
@@ -34,7 +29,7 @@
 </script>
 <template>
 <div class="wrapper">
-  <img src="/church-header.png" alt="people walking in the church" />
+  <img src="/church.png" alt="people walking in the church" />
   <div class="info-wrapper info-text">
     <div class="text">
       <span>Seek the beans.</span>
@@ -65,10 +60,10 @@
       </BeanPlaceholder>
       <div class="food-select">
 
-      <select name="foods" id="foods">
-        <option v-for="food in foodId" :key="food.value" :value="food.value">{{food.value}}</option>
+      <select name="foods" id="foods" v-model="foodId">
+        <option v-for="food in foods" :key="food.value" :value="food.id">{{food.value}}</option>
       </select>
-      <Button @click="buy">Buy</Button>
+      <Button @click="buyFood">Buy</Button>
       </div>
       </div>
     </div>

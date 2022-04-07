@@ -1,6 +1,3 @@
-<script setup>
-  const activeRoute = ref('home')
-</script>
 <template>
   <div class="wrapper">
     <div class="container">
@@ -11,10 +8,10 @@
         </div>
       </NuxtLink>
       <div class="nav">
-        <Button :route="'/'" :active="activeRoute==='home'" @click="activeRoute='home'">Home</Button>
-        <Button :route="'/gallery'" :active="activeRoute==='gallery'"  @click="activeRoute='gallery'">Gallery</Button>
-        <Button :route="'/manifesto'" :active="activeRoute==='manifesto'"  @click="activeRoute='manifesto'">Manifesto</Button>
-        <Button :route="'/church'" :active="activeRoute==='church'" @click="activeRoute='church'">The Church</Button>
+        <Button route="/">Home</Button>
+        <Button route="/gallery">Gallery</Button>
+        <Button route="/manifesto">Manifesto</Button>
+        <Button route="/church">The Church</Button>
       </div>
     </div>
   </div>

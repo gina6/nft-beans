@@ -1,10 +1,12 @@
 <script setup>
-  const button = defineProps(['route', 'active'])
+  const button = defineProps(['route', 'active']);
+  const route = useRoute();
+  const routeMatched = computed(() => button.route && button.route === route.fullPath);
 </script>
 
 <template>
   <div>
-    <NuxtLink :to="button.route" class="button" :class="{ active: button.active }">
+    <NuxtLink :to="button.route" class="button" :class="{ active: button.active || routeMatched }">
       <slot />
     </NuxtLink>
   </div>

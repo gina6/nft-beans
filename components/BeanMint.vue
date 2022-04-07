@@ -11,9 +11,10 @@
     const signer = getSigner();
     const signerAddress = await signer.getAddress();
 
-    await beans.payToMint(signerAddress, config.PINATA_CONTENT_ID, {
+    const minting = await beans.payToMint(signerAddress, config.PINATA_CONTENT_ID, {
       value: ethers.utils.parseUnits("0.05", "ether")
     });
+    await minting.wait();
 
     emit("minted");
   }

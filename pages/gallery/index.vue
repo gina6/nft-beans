@@ -20,11 +20,12 @@
     const count = parseInt(await beansContract.count());
     const nfts = [];
     for (let i = 0; i < count; i++) {
-      nfts.push({
-        id: i,
-        image: "https://picsum.photos/250/250",
-        // TODO: image: await beansContract.tokenURI(i),
-      })
+      let imageSrc = await beansContract.tokenURI(i);
+      if (imageSrc.startsWith("ipfs://")) {
+        const contentId = imageSrc.substring("ipfs://".length);
+        imageSrc = `https://ipfs.io/ipfs/${contentId}`;
+      }
+      nfts.push({ id: i, image: imageSrc });
     }
     beans.value = nfts;
   }

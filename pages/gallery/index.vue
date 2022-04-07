@@ -14,7 +14,7 @@ const categories = [
   "Hands",
 ];
 
-const beans = ref([]);
+const beans = useBeans();
 const config = useRuntimeConfig();
 
 onBeforeMount(() => {

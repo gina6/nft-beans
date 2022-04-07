@@ -1,6 +1,4 @@
 <script setup>
-const metamask = ref(false);
-
 const carbeanals = ref([
   { name: "Beana", image: "/carbeanals/beana.png" },
   { name: "Beaninic", image: "/carbeanals/beaninic.png" },
@@ -9,11 +7,6 @@ const carbeanals = ref([
   { name: "Beanlas", image: "/carbeanals/beanlas.png" },
 ]);
 
-onBeforeMount(() => {
-  if (window.ethereum) {
-    metamask.value = true;
-  }
-});
 definePageMeta({
   layout: "custom",
 });
@@ -60,9 +53,6 @@ definePageMeta({
         />
       </div>
     </div>
-    <!-- <Install v-if="!metamask" />
-    <Home />
-    <WalletBalance /> -->
   </div>
 </template>
 <style lang="scss" scoped>

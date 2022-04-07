@@ -1,38 +1,56 @@
 <script setup>
-  import { getBeans } from "@/utils/contracts";
+import { getBeans } from "@/utils/contracts";
 
-  const categories = [
-    "Background",
-    "Hat",
-    "Eyes",
-    "Nose",
-    "Mouth",
-    "Skin",
-    "Hands"
-  ]
+const metamask = ref(false);
+const connection = ref(false);
 
-  const beans = ref([]);
-  const config = useRuntimeConfig();
+const categories = [
+  "Background",
+  "Hat",
+  "Eyes",
+  "Nose",
+  "Mouth",
+  "Skin",
+  "Hands",
+];
 
-  async function loadNFTs() {
-    const beansContract = getBeans(config);
+const beans = ref([]);
+const config = useRuntimeConfig();
 
-    const count = parseInt(await beansContract.count());
-    const nfts = [];
-    for (let i = 0; i < count; i++) {
-      let imageSrc = await beansContract.tokenURI(i);
-      if (imageSrc.startsWith("ipfs://")) {
-        const contentId = imageSrc.substring("ipfs://".length);
-        imageSrc = `https://ipfs.io/ipfs/${contentId}`;
-      }
-      nfts.push({ id: i, image: imageSrc });
+onBeforeMount(() => {
+  if (window.ethereum) {
+    metamask.value = true;
+    if (window.ethereum.selectedAddress) {
+      connection.value = true;
     }
-    beans.value = nfts;
   }
+});
 
-  if (process.client) {
-    loadNFTs();
+async function connect() {
+  await window.ethereum.request({ method: 'eth_requestAccounts' });
+  connection.value = true;
+  loadNFTs();
+}
+
+async function loadNFTs() {
+  const beansContract = getBeans(config);
+
+  const count = parseInt(await beansContract.count());
+  const nfts = [];
+  for (let i = 0; i < count; i++) {
+    let imageSrc = await beansContract.tokenURI(i);
+    if (imageSrc.startsWith("ipfs://")) {
+      const contentId = imageSrc.substring("ipfs://".length);
+      imageSrc = `https://ipfs.io/ipfs/${contentId}`;
+    }
+    nfts.push({ id: i, image: imageSrc });
   }
+  beans.value = nfts;
+}
+
+if (process.client) {
+  loadNFTs();
+}
 
 definePageMeta({
   layout: "custom",
@@ -51,6 +69,8 @@ definePageMeta({
         <div class="divider"></div>
       </Dropdown>
     </div>
+    <Install v-if="!metamask" />
+    <Button v-else-if="!connection" @click="connect"> Connect Wallet </Button>
     <div class="container-beans">
       <ClientOnly>
         <BeanMint @minted="loadNFTs" />

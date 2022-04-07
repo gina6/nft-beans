@@ -36,11 +36,12 @@ async function loadNFTs() {
   const nfts = [];
   for (let i = 0; i < count; i++) {
     let imageSrc = await beansContract.tokenURI(i);
+    const owner = await beansContract.ownerOf(i);
     if (imageSrc.startsWith("ipfs://")) {
       const contentId = imageSrc.substring("ipfs://".length);
       imageSrc = `https://ipfs.io/ipfs/${contentId}`;
     }
-    nfts.push({ id: i, image: imageSrc });
+    nfts.push({ id: i, image: imageSrc, owner });
   }
   beans.value = nfts;
 }
@@ -76,6 +77,7 @@ definePageMeta({
         v-for="bean in beans"
         :key="bean.id"
         :text="`Supreme Bean #${bean.id}`"
+        :smallText="bean.owner"
         :image="bean.image"
       >
       </BeanPreview>

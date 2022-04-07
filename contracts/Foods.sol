@@ -10,16 +10,28 @@ contract Foods is ERC1155, Ownable, ERC1155Burnable {
     uint256 public constant CANDY = 2;
     uint256 public constant MEAT = 3;
     uint256 public constant SPECIAL = 4;
+    address private owner;
 
     constructor() ERC1155("ipfs://") {
         _mint(msg.sender, VEGETABLE, 10**8, "");
         _mint(msg.sender, CANDY, 10**8, "");
         _mint(msg.sender, MEAT, 10**4, "");
         _mint(msg.sender, SPECIAL, 10**2, "");
+        owner = msg.sender;
     }
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
+    }
+
+    function buy(address recipient, uint256 foodId)
+        public
+        payable
+        returns (uint256)
+    {
+        require(foodId != 4 || msg.value >= 0.02 ether, "Need to pay up!");
+        require(msg.value >= 0.01 ehter, "Need to pay up!");
+        safeTransferFrom(onwner, recipient, foodId, 1);
     }
 
     function eat(uint256 foodId) external {

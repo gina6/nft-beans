@@ -1,7 +1,36 @@
 <script setup>
+
+  import { ethers } from "ethers";
+
+  const foodId = ref([
+    {id: 1, value: "Vegetables"},
+    {id: 2, value: "Sweets"},
+    {id: 3, value: "Meat"},
+    {id: 4, value: "Special Food"}
+  ]);
+
   definePageMeta({
     layout: "custom",
   });
+
+  async function buyFood(){
+    const foods = useFoodsContract().value;
+    const signer = useSigner();
+    const signerAddress = await signer.getAddress();
+
+    if (foodId == 4){
+      const transfer = await foods.buy(signerAddress, foodId, {
+      value: ethers.utils.parseUnits("0.02", "ether")
+    });
+    } else {
+      const transfer = await foods.buy(signerAddress, foodId, {
+        value: ethers.utils.parseUnits("0.01", "ether")
+      });
+    }
+    await transfer.wait();
+  }
+
+
 </script>
 <template>
 <div class="wrapper">
@@ -20,15 +49,28 @@
       <BeanPlaceholder>
         bean NFT
       </BeanPlaceholder>
+      <div class="arrows">
+
       <div class="arrow"></div>
       <div class="feed-button">
         <Button class="button" :active="true">Feed</Button>
         <div class="arrow-down"></div>
       </div>
       <div class="arrow"></div>
+      </div>
+      <div class="food">
+
       <BeanPlaceholder>
         food
       </BeanPlaceholder>
+      <div class="food-select">
+
+      <select name="foods" id="foods">
+        <option v-for="food in foodId" :key="food.value" :value="food.value">{{food.value}}</option>
+      </select>
+      <Button @click="buy">Buy</Button>
+      </div>
+      </div>
     </div>
     <BeanPlaceholder class="sum">
       evolved bean
@@ -89,17 +131,22 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    gap: 18px;
+    align-items: flex-start;
+    margin-top: 10%;
+
+    .arrows{
+      display: flex;
+      align-items: center;
+      justify-content: center;
     .arrow {
-      width: 8%;
+      width: 8vw;
       max-width: 130px;
       height: 5px;
       background: $color-green;
       border-radius: 2.5px;
+      margin: 0 5%
     }
     .feed-button{
-      margin-top: 214px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -109,6 +156,7 @@ img {
         @include helvetica-bold;
         border-radius: 16px;
       }
+    }
       .arrow-down {
         display: inline-block;
         width: 38px;
@@ -119,6 +167,19 @@ img {
         mask-image: $icon-arrow;
         mask-repeat: no-repeat;
         mask-size: contain;
+      }
+    }
+    .food{
+      .food-select {
+        display: flex;
+        margin: 5% auto;
+
+
+        select {
+          color: $color-black;
+          padding: 2% 10%;
+          margin-right: 2%;
+        }
       }
     }
   }

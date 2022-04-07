@@ -21,7 +21,6 @@
     align-items: center;
     border-radius: 25px;
     background-color: $color-green;
-    width: 145px;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     text-transform: uppercase;

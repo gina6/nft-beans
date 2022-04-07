@@ -6,5 +6,5 @@ export default function useFoodsContract() {
   const signer = useSigner();
   const config = useRuntimeConfig();
 
-  return useState("foodsContract", () => new ethers.Contract(config.BEANS_ADDRESS, Foods.abi, signer));
+  return useState("foodsContract", () => new ethers.Contract(config.FOODS_ADDRESS, Foods.abi, signer));
 }

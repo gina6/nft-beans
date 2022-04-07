@@ -3,8 +3,7 @@
     <div class="container">
       <NuxtLink :to="'/'">
         <div class="logo">
-          <span class="top">Supreme Bean</span>
-          <span class="bottom">Cult</span>
+          <img src="/logo.svg" alt="Supreme Bean Cult Logo">
         </div>
       </NuxtLink>
       <div class="nav">
@@ -35,15 +34,9 @@
       justify-content: center;
       align-items: center;
       text-transform: uppercase;
-      .top {
-        @include helvetica;
-        font-size: 25px;
-        color: $color-green;
-      }
-      .bottom {
-        @include impact;
-        font-size: 90px;
-        color: $color-green;
+
+      img{
+        height: 10%
       }
     }
     .nav {

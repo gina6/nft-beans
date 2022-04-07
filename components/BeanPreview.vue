@@ -1,5 +1,5 @@
 <script setup>
-  const bean = defineProps(['text', 'image'])
+  const bean = defineProps(['text', 'smallText', 'image'])
 </script>
 
 <template>
@@ -7,6 +7,7 @@
     <img :src="bean.image" :alt="bean.text">
     <div class="bean-text">
       {{bean.text}}
+      <p v-if="bean.smallText" class="small">{{ bean.smallText }}</p>
     </div>
   </div>
 </template>
@@ -26,6 +27,12 @@
       @include helvetica;
       font-size: 20px;
       text-align: center;
+
+      > .small {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 4px;
+      }
     }
   }
 </style>

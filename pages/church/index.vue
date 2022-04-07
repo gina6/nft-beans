@@ -35,7 +35,7 @@
 <template>
 <div class="wrapper">
   <img src="/church-header.png" alt="people walking in the church" />
-  <div class="info-container">
+  <div class="info-wrapper info-text">
     <div class="text">
       <span>Seek the beans.</span>
       <span>Feed the beans.</span>
@@ -44,7 +44,7 @@
     <img class="image" src="/eatingbean.gif" alt="bean eating something" /> 
   </div>
   <div class="divider"></div>
-  <div class="feed-container">
+  <div class="info-wrapper feed-container">
     <div class="summands">
       <BeanPlaceholder>
         bean NFT
@@ -82,14 +82,12 @@
 img {
   width: 100%;
   max-width: 1240px;
-  margin: 0 100px;
-  margin-bottom: 162px;
+  margin: 0 auto;
+  display: block;
+  padding-bottom: 162px;
   object-fit: contain;
 }
-.info-container {
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 100px;
+.info-text {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -115,17 +113,8 @@ img {
     border-radius: 10px;
   }
 }
-.divider {
-  width: 100%;
-  max-width: 1240px;
-  height: 1px;
-  margin: 5% 100px 0 100px;
-  background-color: $color-white;
-}
 
 .feed-container {
-  width: 100%;
-  max-width: 1440px;
   margin-bottom: 5%;
   .summands {
     display: flex;

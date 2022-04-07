@@ -13,11 +13,11 @@ definePageMeta({
 </script>
 <template>
   <div>
-    <div class="wrapper title">
+    <div class="info-wrapper title">
       <h1>Welcome Brother. Welcome Sister.</h1>
       <h2>How have you bean?</h2>
     </div>
-    <div class="wrapper">
+    <div class="info-wrapper">
       <h1>The Vision</h1>
       <div class="img-paragraph">
         <span>
@@ -40,9 +40,9 @@ definePageMeta({
           alt="sketch of some monk dude writing something"
         />
       </div>
-      <div class="divider"></div>
     </div>
-    <div class="wrapper">
+    <div class="divider"></div>
+    <div class="info-wrapper">
       <h1>The Carbeanals</h1>
       <div class="carbeanals-container">
         <BeanPreview
@@ -81,15 +81,8 @@ div {
     }
   }
 
-  .wrapper {
+  .info-wrapper {
     min-height: 50vh;
-    margin-bottom: 5%;
-    .divider {
-      width: 100%;
-      height: 1px;
-      margin-top: 5%;
-      background-color: $color-white;
-    }
     .carbeanals-container {
       display: flex;
       justify-content: space-around;
@@ -106,6 +99,7 @@ div {
     justify-content: center;
     align-items: center;
     background: url(/home-header.png) no-repeat;
+    background-position: center;
   }
 }
 </style>

@@ -36,11 +36,12 @@ async function loadNFTs() {
   const nfts = [];
   for (let i = 0; i < count; i++) {
     let imageSrc = await beansContract.tokenURI(i);
+    const owner = await beansContract.ownerOf(i);
     if (imageSrc.startsWith("ipfs://")) {
       const contentId = imageSrc.substring("ipfs://".length);
       imageSrc = `https://ipfs.io/ipfs/${contentId}`;
     }
-    nfts.push({ id: i, image: imageSrc });
+    nfts.push({ id: i, image: imageSrc, owner });
   }
   beans.value = nfts;
 }
@@ -57,13 +58,13 @@ definePageMeta({
   <div class="wrapper">
     <div class="container-filter">
       <h1>Gallery</h1>
-      <div class="divider"></div>
+      <div class="gallery-divider"></div>
       <Dropdown
         v-for="category in categories"
         :key="category"
         :category="category"
       >
-        <div class="divider"></div>
+        <div class="gallery-divider"></div>
       </Dropdown>
     </div>
     <Install v-if="!metamask" />
@@ -76,6 +77,7 @@ definePageMeta({
         v-for="bean in beans"
         :key="bean.id"
         :text="`Supreme Bean #${bean.id}`"
+        :smallText="bean.owner"
         :image="bean.image"
       >
       </BeanPreview>
@@ -97,7 +99,7 @@ definePageMeta({
       text-align: center;
       padding-bottom: 30px;
     }
-    .divider {
+    .gallery-divider {
       height: 1px;
       width: 100%;
       background-color: $color-white;

@@ -15,12 +15,11 @@
       </div>
     </div>
   </div>
-  <div class="divider"></div>
+  <div class="nav-divider"></div>
 </template>
 <style lang="scss" scoped>
 .wrapper {
   margin: 0 auto;
-  width: 1440px;
   .container {
     width: 100%;
     display: flex;
@@ -50,13 +49,18 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 80px;      
+      gap: 80px;
+      padding-left: 8px;
+      padding-right: 8px;
+      @include smallScreen {
+        gap: 40px;
+      }
     }
   }
 }
-.divider {
+.nav-divider {
   background-color: $color-green;
-  min-width: 100%;
+  width: 100%;
   height: 5px;
 }
 </style>

@@ -58,13 +58,13 @@ definePageMeta({
   <div class="wrapper">
     <div class="container-filter">
       <h1>Gallery</h1>
-      <div class="divider"></div>
+      <div class="gallery-divider"></div>
       <Dropdown
         v-for="category in categories"
         :key="category"
         :category="category"
       >
-        <div class="divider"></div>
+        <div class="gallery-divider"></div>
       </Dropdown>
     </div>
     <Install v-if="!metamask" />
@@ -99,7 +99,7 @@ definePageMeta({
       text-align: center;
       padding-bottom: 30px;
     }
-    .divider {
+    .gallery-divider {
       height: 1px;
       width: 100%;
       background-color: $color-white;

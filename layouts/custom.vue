@@ -56,6 +56,5 @@ console.log(`
 .container {
   top: 0;
   margin: 0 auto;
-  width: 1440px;
 }
 </style>

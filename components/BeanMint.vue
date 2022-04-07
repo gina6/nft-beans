@@ -1,5 +1,4 @@
 <script setup>
-  import { getBeans, getSigner } from "@/utils/contracts";
   import { ethers } from "ethers";
 
   const emit = defineEmits(["minted"]);
@@ -7,8 +6,8 @@
   const config = useRuntimeConfig();
 
   async function mint() {
-    const beans = getBeans(config);
-    const signer = getSigner();
+    const beans = useBeansContract().value;
+    const signer = useSigner();
     const signerAddress = await signer.getAddress();
 
     const minting = await beans.payToMint(signerAddress, config.PINATA_CONTENT_ID, {

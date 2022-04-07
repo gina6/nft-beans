@@ -1,6 +1,4 @@
 <script setup>
-import { getBeans } from "@/utils/contracts";
-
 const metamask = ref(false);
 const connection = ref(false);
 
@@ -15,7 +13,6 @@ const categories = [
 ];
 
 const beans = useBeans();
-const config = useRuntimeConfig();
 
 onBeforeMount(() => {
   if (window.ethereum) {
@@ -33,7 +30,7 @@ async function connect() {
 }
 
 async function loadNFTs() {
-  const beansContract = getBeans(config);
+  const beansContract = useBeansContract().value;
 
   const count = parseInt(await beansContract.count());
   const nfts = [];

@@ -9,6 +9,9 @@ export default defineNuxtConfig({
   build: {
     transpile: ["@ethersproject", "ethers"],
   },
+  server: {
+    host: '0.0.0.0'
+  },
   vite: {
     css: {
       preprocessorOptions: {

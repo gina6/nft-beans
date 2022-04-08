@@ -179,13 +179,13 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
-    margin-top: 10%;
+    align-items: center;
 
     .arrows {
       display: flex;
       align-items: center;
       justify-content: center;
+
       .arrow {
         width: 8vw;
         max-width: 130px;
@@ -199,6 +199,7 @@ img {
         flex-direction: column;
         align-items: center;
         gap: 18px;
+        margin-top: 230px;
 
         .button {
           @include helvetica-bold;
